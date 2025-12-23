@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upstox Redirect</title>
-  <meta charset="utf-8" />
-  <script>
-    const params = window.location.search;
-    window.location.href = "tradingalert://auth" + params;
-  </script>
+  <meta charset="utf-8">
+  <title>Upstox Auth Redirect</title>
 </head>
 <body>
-Redirecting to app...
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+
+  if (code) {
+    window.location.href = "tradingalert://auth?code=" + code;
+  } else {
+    document.body.innerText = "Waiting for Upstox login...";
+  }
+</script>
 </body>
 </html>
