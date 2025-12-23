@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upstox Auth Redirect</title>
   <meta charset="utf-8" />
+  <title>Upstox Auth Redirect</title>
 </head>
 <body>
 <script>
-  // Parse query params
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
   const state = params.get("state");
   const error = params.get("error");
 
   if (code) {
-    const deepLink = `tradingalert://auth?code=${code}&state=${state}`;
-    window.location.href = deepLink;
+    window.location.href =
+      "tradingalert://auth?code=" + code + "&state=" + state;
   } else if (error) {
-    document.body.innerHTML = "OAuth Error: " + error;
+    document.body.innerText = "OAuth Error: " + error;
   } else {
-    document.body.innerHTML = "Waiting for Upstox authorization...";
+    document.body.innerText = "Waiting for Upstox authorization…";
   }
 </script>
 </body>
